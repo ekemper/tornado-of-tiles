@@ -26,9 +26,9 @@ import tornado.websocket
 import os.path
 import uuid
 
-from tornado.options import define, options
+# from tornado.options import define, options
 
-define("port", default=5000, help="run on the given port", type=int)
+# define("port", default=5000, help="run on the given port", type=int)
 
 
 class Application(tornado.web.Application):
@@ -106,10 +106,10 @@ class ChatSocketHandler(tornado.websocket.WebSocketHandler):
 
 
 def main():
-    tornado.options.parse_command_line()
+    # tornado.options.parse_command_line()
     app = Application()
     port = int(os.environ.get("PORT", 5000))
-    app.listen(options.port)
+    app.listen(port)
     tornado.ioloop.IOLoop.current().start()
 
 
