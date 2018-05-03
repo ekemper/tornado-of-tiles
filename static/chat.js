@@ -18,6 +18,7 @@ $(document).ready(function() {
 
     $("#messageform").on("submit", function() {
         newMessage($(this));
+        $("#messagform").innerText = '';
         return false;
     });
     $("#messageform").on("keypress", function(e) {
