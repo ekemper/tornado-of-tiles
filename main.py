@@ -9,7 +9,6 @@ testJson = {
     anotherTag: "things"
 }
 
-
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write("Hello world again!")
