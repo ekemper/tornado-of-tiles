@@ -5,8 +5,8 @@ import tornado.web
 
 
 testJson = {
-    tag: "stuff",
-    anotherTag: "things"
+    'tag': "stuff",
+    'anotherTag': "things"
 }
 
 class MainHandler(tornado.web.RequestHandler):
