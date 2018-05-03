@@ -108,6 +108,7 @@ class ChatSocketHandler(tornado.websocket.WebSocketHandler):
 def main():
     tornado.options.parse_command_line()
     app = Application()
+    port = int(os.environ.get("PORT", 5000))
     app.listen(options.port)
     tornado.ioloop.IOLoop.current().start()
 
