@@ -3,13 +3,20 @@ import tornado.httpserver
 import tornado.ioloop
 import tornado.web
 
+
+testJson = {
+    tag: "stuff",
+    anotherTag: "things"
+}
+
+
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write("Hello world again!")
 
 class TilesHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("tiles come from this endpoint")
+        self.write(testJson)
 
 def main():
     application = tornado.web.Application([
