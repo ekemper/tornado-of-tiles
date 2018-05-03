@@ -7,9 +7,14 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write("Hello world again!")
 
+class TilesHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.write("tiles come from this endpoint")
+
 def main():
     application = tornado.web.Application([
         (r"/", MainHandler),
+        (r"/tiles", TilesHandler),
     ])
     http_server = tornado.httpserver.HTTPServer(application)
     port = int(os.environ.get("PORT", 5000))
