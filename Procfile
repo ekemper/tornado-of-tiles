@@ -1,1 +1,1 @@
-web: python chat.py
+web: FLASK_APP=chat.py flask run
