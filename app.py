@@ -85,4 +85,14 @@ app.router.add_get('/', index)
 
 if __name__ == '__main__':
     sio.start_background_task(background_task)
-    web.run_app(app)
+    port = os.getenv('PORT', 8080)
+    print()
+    web.run_app(app, port)
+
+
+
+
+
+
+
+
