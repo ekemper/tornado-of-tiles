@@ -1,5 +1,5 @@
 import asyncio
-
+import os
 from aiohttp import web
 
 import socketio
@@ -11,12 +11,12 @@ sio.attach(app)
 
 async def background_task():
     """Example of how to send server generated events to clients."""
-    count = 0
-    while True:
-        await sio.sleep(10)
-        count += 1
-        await sio.emit('my response', {'data': 'Server generated event'},
-                       namespace='/test')
+    # count = 0
+    # while True:
+    #     await sio.sleep(10)
+    #     count += 1
+    #     await sio.emit('my response', {'data': 'Server generated event'},
+    #                    namespace='/test')
 
 
 async def index(request):
@@ -35,32 +35,32 @@ async def test_broadcast_message(sid, message):
     await sio.emit('my response', {'data': message['data']}, namespace='/test')
 
 
-@sio.on('join', namespace='/test')
-async def join(sid, message):
-    sio.enter_room(sid, message['room'], namespace='/test')
-    await sio.emit('my response', {'data': 'Entered room: ' + message['room']},
-                   room=sid, namespace='/test')
+# @sio.on('join', namespace='/test')
+# async def join(sid, message):
+#     sio.enter_room(sid, message['room'], namespace='/test')
+#     await sio.emit('my response', {'data': 'Entered room: ' + message['room']},
+#                    room=sid, namespace='/test')
 
 
-@sio.on('leave', namespace='/test')
-async def leave(sid, message):
-    sio.leave_room(sid, message['room'], namespace='/test')
-    await sio.emit('my response', {'data': 'Left room: ' + message['room']},
-                   room=sid, namespace='/test')
+# @sio.on('leave', namespace='/test')
+# async def leave(sid, message):
+#     sio.leave_room(sid, message['room'], namespace='/test')
+#     await sio.emit('my response', {'data': 'Left room: ' + message['room']},
+#                    room=sid, namespace='/test')
 
 
-@sio.on('close room', namespace='/test')
-async def close(sid, message):
-    await sio.emit('my response',
-                   {'data': 'Room ' + message['room'] + ' is closing.'},
-                   room=message['room'], namespace='/test')
-    await sio.close_room(message['room'], namespace='/test')
+# @sio.on('close room', namespace='/test')
+# async def close(sid, message):
+#     await sio.emit('my response',
+#                    {'data': 'Room ' + message['room'] + ' is closing.'},
+#                    room=message['room'], namespace='/test')
+#     await sio.close_room(message['room'], namespace='/test')
 
 
-@sio.on('my room event', namespace='/test')
-async def send_room_message(sid, message):
-    await sio.emit('my response', {'data': message['data']},
-                   room=message['room'], namespace='/test')
+# @sio.on('my room event', namespace='/test')
+# async def send_room_message(sid, message):
+#     await sio.emit('my response', {'data': message['data']},
+#                    room=message['room'], namespace='/test')
 
 
 @sio.on('disconnect request', namespace='/test')
@@ -84,10 +84,13 @@ app.router.add_get('/', index)
 
 
 if __name__ == '__main__':
-    sio.start_background_task(background_task)
-    port = os.getenv('PORT', 8080)
+    # sio.start_background_task(background_task)
+
+    # TODO figure out the config for port/host on heroku
+    # port = os.getenv('PORT', 8080)
+    # host = os.getenv('HOST', '127.0.0.1')
     print()
-    web.run_app(app, port)
+    web.run_app(app, host='127.0.0.1', port=8080)
 
 
 
