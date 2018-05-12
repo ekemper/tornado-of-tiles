@@ -1,113 +1,87 @@
 <template>
-  <div class="hello">
-    <h1>\{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+<div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 messages">
+        <div v-for="message in messages" :key="message.id">
+          <span>
+            {{message.user}}
+          </span>
+          <span>
+            {{message.body}}
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row message-input">
+      <div class="col-sm">
+
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder=""
+            aria-label="message input"
+            v-on:keyup.13="submit"
+            v-model="newMessage"
+          >
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">
+              <i class="fas fa-angle-right"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
+
+</div>
 </template>
 
 <script>
+
 export default {
-  name: 'HelloWorld',
+  name: 'main',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      messages: [
+        {
+          user: 'this dude',
+          body: 'booboo',
+          id: 1
+        },
+        {
+          user: 'dinosaur',
+          body: 'eat meat!',
+          id: 2
+        }
+      ],
+      currentUser: 'me',
+      newMessage: ''
     }
+  },
+  methods: {
+    submit
   }
 }
+
+function submit () {
+  this.messages.push({
+    user: this.currentUser,
+    body: this.newMessage
+  })
+
+  this.newMessage = ''
+}
+
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+<style>
+  .message-input {
+    bottom: 0px;
+  }
 </style>
