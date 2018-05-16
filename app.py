@@ -18,7 +18,6 @@ async def background_task():
     #     await sio.emit('my response', {'data': 'Server generated event'},
     #                    namespace='/test')
 
-
 async def index(request):
     with open('app.html') as f:
         return web.Response(text=f.read(), content_type='text/html')
