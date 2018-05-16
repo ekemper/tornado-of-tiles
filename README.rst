@@ -1,39 +1,16 @@
-Socket.IO aiohttp Examples
-==========================
 
-This directory contains example Socket.IO applications that are compatible with
-asyncio and the aiohttp framework. These applications require Python 3.5 or
-later.
+A real-time messaging service for the Helptile chrome exension.
 
-app.py
-------
 
-A basic "kitchen sink" type application that allows the user to experiment
-with most of the available features of the Socket.IO server.
-
-latency.py
-----------
-
-A port of the latency application included in the official Engine.IO
-Javascript server. In this application the client sends *ping* messages to
-the server, which are responded by the server with a *pong*. The client
-measures the time it takes for each of these exchanges and plots these in real
-time to the page.
-
-This is an ideal application to measure the performance of the different
-asynchronous modes supported by the Socket.IO server.
-
-Running the Examples
---------------------
-
-To run these examples, create a virtual environment, install the requirements
-and then run::
+To run, create a virtual environment, install the requirements
+and then run:
 
     $ python app.py
 
-or::
-
-    $ python latency.py
-
 You can then access the application from your web browser at
 ``http://localhost:8080``.
+
+
+References:
+* https://hackernoon.com/asyncio-for-the-working-python-developer-5c468e6e2e8e
+* https://medium.freecodecamp.org/a-guide-to-asynchronous-programming-in-python-with-asyncio-232e2afa44f6
