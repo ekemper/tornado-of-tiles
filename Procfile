@@ -1,1 +1,1 @@
-web: python app.py
+web: python ./vue/dist/app.py
